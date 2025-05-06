@@ -286,7 +286,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-bindsym $mod+w exec --no-startup-id /usr/bin/firefox
+bindsym $mod+w exec --no-startup-id /usr/bin/librewolf
 bindsym $mod+f exec --no-startup-id /usr/bin/thunar
 bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
@@ -381,9 +381,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id dex --autostart --environment i3
 
-# start welcome app
-#exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3 
-
 # num lock activated
 #exec --no-startup-id numlockx on
 
@@ -393,13 +390,18 @@ exec --no-startup-id setxkbmap -layout 'us,latam' -variant qwerty -option 'grp:a
 # start conky:
 exec_always --no-startup-id conky
 
+exec --no-startup-id fcitx5
+
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill /home/alice/Downloads/celeste3.jpg
+# exec --no-startup-id sleep 1 && feh --bg-fill /home/alice/media/Images/wallpapers/jojo.jpg
+# exec --no-startup-id sleep 1 && feh --bg-fill "$(find /home/alice/media/Images/wallpapers -type f | shuf -n 1)"
+# exec --no-startup-id sleep 1 && feh --bg-fill "$(find /home/alice/media/Images/wallpapers -type f | shuf -n 1)"
+exec --no-startup-id sh -c 'feh --bg-fill "$(find /home/alice/media/Images/wallpapers -type f | shuf -n 1)"; while true; do sleep 3600; feh --bg-fill "$(find /home/alice/media/Images/wallpapers -type f | shuf -n 1)"; done &'
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
